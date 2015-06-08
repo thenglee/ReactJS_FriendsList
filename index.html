@@ -7,16 +7,21 @@
 <body>
 	<div id="app"></div>
 	<script type="text/jsx">
-		var HelloWorld = React.createClass({
+		var HelloUser = React.createClass({
+			getInitialState: function(){
+				return {
+					username: '@thenglee'
+				};
+			},
 			render: function(){
 				return (
-					<div>Hello World!</div>
+					<div>Hello {this.state.username}</div>
 				);
 			}
 		});
 
 		React.render(
-			<HelloWorld />,
+			<HelloUser />,
 			document.getElementById('app')
 		);
 	</script>
