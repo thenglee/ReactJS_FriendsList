@@ -7,28 +7,42 @@
 <body>
 	<div id="app"></div>
 	<script type="text/jsx">
-		var HelloUser = React.createClass({
-			getInitialState: function(){
-				return {
-					username: '@thenglee'
-				};
-			},
-			handleChange: function(e){
-				this.setState({
-					username: e.target.value
-				});
-			},
+
+		var ShowList = React.createClass({
 			render: function(){
+				var listItems = this.props.names.map(function(friend){
+					return <li>{friend}</li>;
+				});
 				return (
-					<div>Hello {this.state.username}<br />
-					Change Name: <input type="text" value={this.state.username} onChange={this.handleChange} />
+					<div>
+						<h3>Friends</h3>
+						<ul>{listItems}</ul>
 					</div>
 				);
 			}
 		});
 
+		var FriendsContainer = React.createClass({
+			getInitialState: function(){
+				return {
+					name: 'TylerMcGinnis',
+					friends: ['Jake Lingwall', 'Murphy Randall', 'Merrick Christensen']
+				};
+			},
+			render: function(){
+				return (
+					<div>
+						<h3>Name: {this.state.name}</h3>
+						<ShowList names={this.state.friends} />
+					</div>
+				);
+			}
+		});
+
+		
+
 		React.render(
-			<HelloUser />,
+			<FriendsContainer />,
 			document.getElementById('app')
 		);
 	</script>
